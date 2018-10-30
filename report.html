@@ -12570,23 +12570,23 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <ul>
 <li>Decision Trees:<ul>
 <li>can be applied in many problems from business and industry, such as energy consumption or healthcare management (e.g. <a href="http://what-when-how.com/artificial-intelligence/decision-tree-applications-for-data-modelling-artificial-intelligence/">http://what-when-how.com/artificial-intelligence/decision-tree-applications-for-data-modelling-artificial-intelligence/</a>)</li>
-<li>are very fast </li>
+<li>are very fast, result in simple and understandable rules (<a href="https://de.wikipedia.org/wiki/Entscheidungsbaum">https://de.wikipedia.org/wiki/Entscheidungsbaum</a>)</li>
 <li>are quite simple, therefore they cannot be used for complex problems, and also tend to overfit</li>
-<li>should be appropriate for solving this problem because the data is fully labeled and not very complex</li>
+<li>I chose decision trees because they will result in simple rules that CharityML will easily understand, e.g. "Someone earns probably more than $50,000 if he is older than 50 years and has a doctoral degree".</li>
 </ul>
 </li>
 <li>AdaBoost:<ul>
 <li>can be applied for image classification in autonomous driving (e.g. <a href="https://ieeexplore.ieee.org/abstract/document/6728254">https://ieeexplore.ieee.org/abstract/document/6728254</a>)</li>
 <li>performs well when computational resources are limited</li>
 <li>but can be sensitive to noisy data and outliers (see <a href="http://www.nickgillian.com/wiki/pmwiki.php/GRT/AdaBoost#Disadvantages">http://www.nickgillian.com/wiki/pmwiki.php/GRT/AdaBoost#Disadvantages</a>)</li>
-<li>should be appropriate for this problem because the data is cleaned and doesn't contain many outliers and noise</li>
+<li>I chose AdaBoost because it combines the advantages of decision trees with fast computation time and only little danger of overfitting. Also, the data is cleaned and doesn't contain many outliers and noise, so AdaBoost should work well.</li>
 </ul>
 </li>
 <li>Support Vector Machines (SVMs):<ul>
 <li>can be applied for pedestrian detection in autonomous driving (e.g. <a href="https://link.springer.com/chapter/10.1007/978-3-540-76386-4_86">https://link.springer.com/chapter/10.1007/978-3-540-76386-4_86</a>)</li>
-<li>its strength lies in the kernel trick, with a good kernel extremely challenging problems can be solved, and SVMs will not find local minima like neural networks (see <a href="https://statinfer.com/204-6-8-svm-advantages-disadvantages-applications/">https://statinfer.com/204-6-8-svm-advantages-disadvantages-applications/</a>)</li>
+<li>Its strength lies in the kernel trick, with a good kernel extremely challenging problems can be solved, and SVMs will not find local minima like neural networks (see <a href="https://statinfer.com/204-6-8-svm-advantages-disadvantages-applications/">https://statinfer.com/204-6-8-svm-advantages-disadvantages-applications/</a>). Also, the margin will be maximized (<a href="https://de.wikipedia.org/wiki/Support_Vector_Machine">https://de.wikipedia.org/wiki/Support_Vector_Machine</a>).</li>
 <li>can only be directly applied with fully-labeled data and two-class problems (see <a href="https://en.wikipedia.org/wiki/Support_vector_machine#Issues">https://en.wikipedia.org/wiki/Support_vector_machine#Issues</a>)</li>
-<li>should be appropriate here because we have a two-class classification problem which is fully labelled</li>
+<li>I chose SVM because the data is linearly separable and SVM will not only find a hyperplane that separates the data, but will maximize the margin as well.</li>
 </ul>
 </li>
 </ul>
@@ -12862,7 +12862,8 @@ I would choose AdaBoost classifier. F-score and accuracy score on testing set ar
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> AdaBoost is an ensemble method combining several weak learners to one strong learner. For example, one could use very simple decision trees with small depth as weak learners, they only have to be a bit better than chance. After the first weak learner is applied on the training data, the misclassified points are given a higher weight, therefore ensuring that the next weak classifier will correct the mistakes of the first. This is repeated several times. Finally, the average over all weak learners is calculated at each data point as result.</p>
+<p><strong>Answer: </strong> The method chosen consists of different weak learners. A weak learner is a simple classification algorithm that can classify some data well, but will perform poorly on other data. Therefore, it is only slightly better than chance or simply guessing. For example, one could use very simple decision trees with depth 1 as weak learners. A decision tree of depth 1 would for example only separate between people of age&gt;50 and age&lt;=50 and ignore all other features. Another tree would separate between people who have a university degree and people who don't.</p>
+<p>AdaBoost is an ensemble method combining several weak learners to one strong learner. After the first weak learner is applied on the training data, the misclassified points are given a higher weight, therefore ensuring that the next weak classifier will correct the mistakes of the first. A weight is simply a multiplying factor. This is repeated several times. Therefore, each weak learner solves a subproblem, leaving the remaining problem for the next weak learner. Finally, the average over all weak learners is calculated at each data point as result.</p>
 
 </div>
 </div>
